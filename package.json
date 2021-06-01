@@ -1,0 +1,26 @@
+{
+  "name": "taskware-e2e",
+  "version": "1.0.0",
+  "description": "E2E tests for Taskware",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^7.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "yarn run cypress open",
+    "cy:run:admin": "yarn run cypress run --spec 'cypress/integration/admin/*'",
+    "cy:run:client": "yarn run cypress run --spec 'cypress/integration/client/*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LerBigDev/taskware-e2e.git"
+  },
+  "author": "LerBigDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LerBigDev/taskware-e2e/issues"
+  },
+  "homepage": "https://github.com/LerBigDev/taskware-e2e#readme"
+}
