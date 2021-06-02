@@ -2,7 +2,7 @@ import config from './config'
 
 const { loginOk, loginWrong, passwordOk, passwordWrong, url } = config;
 
-describe('My Admin Login Test Suite', function () {
+describe('My Helper Login Test Suite', function () {
     beforeEach(() => {
         cy.visit(`${url}/signin`);
     })

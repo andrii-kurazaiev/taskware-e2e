@@ -30,3 +30,6 @@ Cypress.Commands.add('login', (email, password, url) => {
     cy.get('button[type = submit]').click()
     cy.url().should('eq', `${url}/dashboard/main`)
 })
+
+   
+   
