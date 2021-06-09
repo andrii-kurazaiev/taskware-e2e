@@ -2,7 +2,7 @@ import config from "./config";
 
 const { url } = config;
 
-describe("My Client Test Suite Signup", function () // разбираюсь рандомной генирацией значений имени, емейла
+describe("My Helper Test Suite Signup", function () // разбираюсь рандомной генирацией значений имени, емейла
 {
   beforeEach(() => {
     cy.mailslurp()
@@ -28,11 +28,11 @@ describe("My Client Test Suite Signup", function () // разбираюсь ра
         mailslurp.waitForLatestEmail(this.inboxId, 30000, true)
       )
       .then(
-        (email) =>
-          /.*\.taskware\.io\/activate\/([A-Za-z0-9]{10}).*/.exec(email.body)[1]
+        (email) => /.*\.taskware\.io\/activate\/(.{11}).*/.exec(email.body)[1]
       )
       .then((code) => {
         cy.visit(`${url}/activate/${code}`);
       });
+    cy.contains("Sign in").should("be.visible");
   });
 });

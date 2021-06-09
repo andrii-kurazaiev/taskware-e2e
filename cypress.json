@@ -1,1 +1,8 @@
-{}
+{
+  "defaultCommandTimeout": 30000,
+  "responseTimeout": 30000,
+  "requestTimeout": 30000,
+  "env": {
+    "MAILSLURP_API_KEY": "fb1c68d94ef6d0ea8a4e34237e10d872cab18db92703129f977d4b33266ed135"
+  }
+}
