@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
-import config from './config'
+import config from '../config'
 
 const { loginOk, loginWrong, passwordOk, passwordWrong, url } = config;
 
-describe('My Helper Forgotpassword Test Suite',function()
+describe('My Client Forgotpassword Test Suite',function()
 {
 
     beforeEach(()=> {

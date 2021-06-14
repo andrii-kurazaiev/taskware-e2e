@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
-import config from './config'
+import config from '../config'
 
 const { loginOk, loginWrong, passwordOk, passwordWrong, url } = config;
 
-describe('My Client Forgotpassword Test Suite',function()
+describe('My Admin Test Suite',function()
 {
 
     beforeEach(()=> {
@@ -15,7 +15,7 @@ describe('My Client Forgotpassword Test Suite',function()
         cy.get('input[name = email]').type(loginOk)
         cy.get('button[type = submit]').click()
         cy.wait(5000)
-        cy.url().should('eq', `${url}/reset`)
+        cy.url().should('eq', `${url}/rest`)
         })
     
     it('Incorrect email ',function()
