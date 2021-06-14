@@ -3,6 +3,6 @@
   "responseTimeout": 30000,
   "requestTimeout": 30000,
   "env": {
-    "MAILSLURP_API_KEY": "fb1c68d94ef6d0ea8a4e34237e10d872cab18db92703129f977d4b33266ed135"
+    "MAILSLURP_API_KEY": "cb7f93b766d5b74a676275646b52c55d433666d5f3b9c60d0c5ab992b1f26050"
   }
 }

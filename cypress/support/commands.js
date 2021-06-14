@@ -45,7 +45,7 @@ Cypress.Commands.add(
     }
   ) => {
     let text = "";
-    const incorrectChars = "!@#";
+    const incorrectChars = "!@#>?<%^&*((";
     const possible = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`;
 
     for (let i = 0; i < length; i++)
