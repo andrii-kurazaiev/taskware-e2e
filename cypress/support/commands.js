@@ -33,6 +33,15 @@ Cypress.Commands.add(
     shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
   }
 );
+// Cypress.Commands.add(
+//   "createproject",
+//   function (loginOk, passwordOk, url, shouldEq = `/dashboard/main`) {
+//     cy.visit(`${url}/signin`);
+//     cy.login(loginOk, passwordOk, url);
+//     cy.get('[class="sc-giIncl efCwnz"]').click();
+//     shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
+//   }
+// );
 
 Cypress.Commands.add(
   "typeRandomName",
@@ -94,3 +103,18 @@ Cypress.Commands.add(
     return cy.wrap(subject).type(text);
   }
 );
+
+Cypress.Commands.add("createEmail", () => {
+  cy.mailslurp()
+    .then((mailslurp) => mailslurp.createInbox())
+    .then((inbox) => {
+      cy.wrap(inbox.id).as("inboxId");
+      cy.wrap(inbox.emailAddress).as("emailAddress");
+    });
+});
+
+Cypress.Commands.add("deleteEmail", function () {
+  cy.mailslurp().then((mailslurp) => {
+    mailslurp.deleteInbox(this.inboxId);
+  });
+});
