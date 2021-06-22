@@ -2,16 +2,14 @@ import config from "../config";
 
 const { loginOk, loginWrong, passwordOk, passwordWrong, url } = config;
 
-describe("My Client Test Suite Signup", function () 
-{
+describe("My Client Test Suite Signup", function () {
   beforeEach(() => {
-    cy.mailslurp()
-      .then((mailslurp) => mailslurp.createInbox())
-      .then((inbox) => {
-        cy.wrap(inbox.id).as("inboxId");
-        cy.wrap(inbox.emailAddress).as("emailAddress");
-      });
+    cy.createEmail();
     cy.visit(`${url}/signin`);
+  });
+
+  afterEach(() => {
+    cy.deleteEmail();
   });
 
   it("1. Sign up new client", function () {
@@ -34,7 +32,5 @@ describe("My Client Test Suite Signup", function ()
       .then((code) => {
         cy.visit(`${url}/activate/${code}`);
       });
-
   });
-
 });

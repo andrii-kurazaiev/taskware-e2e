@@ -2,8 +2,7 @@ import config from "../config";
 
 const { loginOk, loginWrong, passwordOk, passwordWrong, url } = config;
 
-describe("My Helper Test Suite Signup", function () 
-{
+describe("My Helper Test Suite Signup", function () {
   beforeEach(() => {
     cy.mailslurp()
       .then((mailslurp) => mailslurp.createInbox())
@@ -12,6 +11,10 @@ describe("My Helper Test Suite Signup", function ()
         cy.wrap(inbox.emailAddress).as("emailAddress");
       });
     cy.visit(`${url}/signin`);
+  });
+
+  afterEach(() => {
+    cy.deleteEmail();
   });
 
   it("1. Sign up new helper", function () {
@@ -35,6 +38,4 @@ describe("My Helper Test Suite Signup", function ()
       });
     cy.contains("Sign in").should("be.visible");
   });
-
-  
 });
