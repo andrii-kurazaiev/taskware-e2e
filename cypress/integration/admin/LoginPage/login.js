@@ -22,7 +22,7 @@ describe("My Admin Login  Test Suite", function () {
 
   it('1.4 Check "Forgot password"', function () {
     cy.get(".login-form-forgot").click();
-    cy.url().should("eq", `${url}/forgot-password`);
+    cy.contains("Forgot your password?").should("be.visible");
   });
 
   it("2.1 Log in as admin with Incorrect Password", function () {
@@ -33,8 +33,7 @@ describe("My Admin Login  Test Suite", function () {
       return false;
     });
   });
-  it("2.2 Log in as admin with Incorrect email", function () 
-  {
+  it("2.2 Log in as admin with Incorrect email", function () {
     cy.login(loginWrong, passwordOk, url, false);
     cy.on("uncaught:exception", (err, runnable) => {
       expect(err.message).to.include("email or password is invalid!");
@@ -70,6 +69,4 @@ describe("My Admin Login  Test Suite", function () {
     cy.get("button[type = submit]").click();
     cy.contains("Please enter password").should("be.visible");
   });
-
-
 });

@@ -1,3 +1,5 @@
+import "cypress-file-upload";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -26,11 +28,11 @@
 
 Cypress.Commands.add(
   "login",
-  (email, password, url, shouldEq = `/dashboard/main`) => {
+  (email, password, url, shouldContains = `PROJECTS`) => {
     cy.get("input[name = email]").type(email);
     cy.get("input[name = password]").type(password);
     cy.get("button[type = submit]").click();
-    shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
+    shouldContains && cy.contains(shouldContains).should("be.visible");
   }
 );
 // Cypress.Commands.add(
