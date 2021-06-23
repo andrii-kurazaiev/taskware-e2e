@@ -1,3 +1,5 @@
+import "cypress-file-upload";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -26,13 +28,22 @@
 
 Cypress.Commands.add(
   "login",
-  (email, password, url, shouldEq = `/dashboard/main`) => {
+  (email, password, url, shouldContains = `PROJECTS`) => {
     cy.get("input[name = email]").type(email);
     cy.get("input[name = password]").type(password);
     cy.get("button[type = submit]").click();
-    shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
+    shouldContains && cy.contains(shouldContains).should("be.visible");
   }
 );
+// Cypress.Commands.add(
+//   "createproject",
+//   function (loginOk, passwordOk, url, shouldEq = `/dashboard/main`) {
+//     cy.visit(`${url}/signin`);
+//     cy.login(loginOk, passwordOk, url);
+//     cy.get('[class="sc-giIncl efCwnz"]').click();
+//     shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
+//   }
+// );
 
 Cypress.Commands.add(
   "typeRandomName",
@@ -94,3 +105,18 @@ Cypress.Commands.add(
     return cy.wrap(subject).type(text);
   }
 );
+
+Cypress.Commands.add("createEmail", () => {
+  cy.mailslurp()
+    .then((mailslurp) => mailslurp.createInbox())
+    .then((inbox) => {
+      cy.wrap(inbox.id).as("inboxId");
+      cy.wrap(inbox.emailAddress).as("emailAddress");
+    });
+});
+
+Cypress.Commands.add("deleteEmail", function () {
+  cy.mailslurp().then((mailslurp) => {
+    mailslurp.deleteInbox(this.inboxId);
+  });
+});
