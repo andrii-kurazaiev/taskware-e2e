@@ -7,6 +7,7 @@ export default {
     passwordOk: "Qwerty1!",
     passwordWrong: "Qwerrty1!",
     url: basicUrl("admin"),
+    ShortInstruction: 'textarea[name="adminShortInstruction"]',
   },
   client: {
     loginOk: "literij726@vreagles.com",
@@ -14,6 +15,7 @@ export default {
     passwordOk: "Anna_9212",
     passwordWrong: "Anna_921222",
     url: basicUrl("client"),
+    ShortInstruction: 'textarea[name="clientShortInstruction"]',
   },
   helper: {
     loginOk: "ximofaj797@whipjoy.com",

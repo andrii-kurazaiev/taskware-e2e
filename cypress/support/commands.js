@@ -35,15 +35,128 @@ Cypress.Commands.add(
     shouldContains && cy.contains(shouldContains).should("be.visible");
   }
 );
-// Cypress.Commands.add(
-//   "createproject",
-//   function (loginOk, passwordOk, url, shouldEq = `/dashboard/main`) {
-//     cy.visit(`${url}/signin`);
-//     cy.login(loginOk, passwordOk, url);
-//     cy.get('[class="sc-giIncl efCwnz"]').click();
-//     shouldEq && cy.url().should("eq", `${url}${shouldEq}`);
-//   }
-// );
+Cypress.Commands.add("CreateprojectGeneraltab", (projectType) => {
+  cy.get('[class="ant-select-selection-search-input"]').click();
+  cy.get('[class="ant-select-item-option-content"]')
+    .contains("My best company", { matchCase: false })
+    .click();
+  cy.get("input[type=text]").typeRandomName();
+  cy.get('[class="ant-typography"]')
+    .contains(projectType, {
+      matchCase: false,
+    })
+    .click();
+  cy.fixture("2pic.zip")
+    .as("FileUpload")
+    .then((fileContent) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "2pic.zip",
+        mimeType: "application/zip",
+      });
+    });
+  cy.wait(6000);
+  cy.get("[data-testid=create-project_button_step-next]").click();
+});
+
+Cypress.Commands.add("CreateprojectGeneraltabClient", (projectType) => {
+  cy.get("input[type=text]").typeRandomName();
+  cy.get('[class="ant-typography"]')
+    .contains(projectType, {
+      matchCase: false,
+    })
+    .click();
+  cy.fixture("2pic.zip")
+    .as("FileUpload")
+    .then((fileContent) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "2pic.zip",
+        mimeType: "application/zip",
+      });
+    });
+  cy.wait(6000);
+  cy.get("[data-testid=create-project_button_step-next]").click();
+});
+
+Cypress.Commands.add("CreateprojectSetuplabels", () => {
+  cy.get('input[name="labels"]').type("test{enter}");
+  cy.get("[data-testid=create-project_button_step-next]").click();
+});
+
+Cypress.Commands.add("CreateprojectUploadinst", (ShortInstruction) => {
+  cy.fixture("instructions.pdf").then((fileContent) => {
+    cy.get('input[type="file"]').attachFile({
+      fileContent: fileContent.toString(),
+      fileName: "instructions.pdf",
+      mimeType: "application/pdf",
+    });
+  });
+  cy.wait(2000);
+  cy.get(ShortInstruction).type("Need to be done asap!");
+  cy.get("[data-testid=create-project_button_step-next]").click();
+});
+
+Cypress.Commands.add("CreateprojectSetupprices", () => {
+  cy.get("[id=helperRate]").type("1");
+  cy.get("[id=auditorRate]").type("1");
+  cy.get("[data-testid=create-project_button_step-next]").click();
+});
+Cypress.Commands.add("CreateprojectDone", () => {
+  cy.contains(
+    "CONGRATULATIONS, YOU'RE ALL DONE! We will review your request and will get back to you shortly!"
+  ).should("be.visible");
+  cy.get(
+    "[data-testid=create-project_button_step-next_save-without-helpers]"
+  ).click();
+});
+Cypress.Commands.add("CreateprojectE2E", (projectType) => {
+  cy.get('[data-testid="add-project-button"]').click();
+  cy.get('[class="ant-select-selection-search-input"]').click();
+  cy.get('[class="ant-select-item-option-content"]')
+    .contains("My best company", { matchCase: false })
+    .click();
+  cy.get("input[type=text]").typeRandomName();
+  cy.get('[class="ant-typography"]')
+    .contains(projectType, {
+      matchCase: false,
+    })
+    .click();
+  cy.fixture("2pic.zip")
+    .as("FileUpload")
+    .then((fileContent) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "2pic.zip",
+        mimeType: "application/zip",
+      });
+    });
+  cy.wait(5000);
+  cy.get("[data-testid=create-project_button_step-next]").click();
+  cy.get('input[name="labels"]').type("test{enter}");
+  cy.get("[data-testid=create-project_button_step-next]").click();
+  cy.fixture("instructions.pdf").then((fileContent) => {
+    cy.get('input[type="file"]').attachFile({
+      fileContent: fileContent.toString(),
+      fileName: "instructions.pdf",
+      mimeType: "application/pdf",
+    });
+  });
+  cy.wait(2000);
+  cy.get('textarea[name="adminShortInstruction"]').type(
+    "Need to be done asap!"
+  );
+  cy.get("[data-testid=create-project_button_step-next]").click();
+  cy.get("[id=helperRate]").type("1");
+  cy.get("[id=auditorRate]").type("1");
+  cy.get("[data-testid=create-project_button_step-next]").click();
+  cy.contains(
+    "CONGRATULATIONS, YOU'RE ALL DONE! We will review your request and will get back to you shortly!"
+  ).should("be.visible");
+  cy.get(
+    "[data-testid=create-project_button_step-next_save-without-helpers]"
+  ).click();
+});
 
 Cypress.Commands.add(
   "typeRandomName",
