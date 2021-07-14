@@ -8,6 +8,7 @@ export default {
     passwordWrong: "Qwerrty1!",
     url: basicUrl("admin"),
     ShortInstruction: 'textarea[name="adminShortInstruction"]',
+    userpage: ".sc-clGGWX > :nth-child(2) > :nth-child(2) > svg",
   },
   client: {
     loginOk: "literij726@vreagles.com",
