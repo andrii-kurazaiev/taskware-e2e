@@ -1,7 +1,6 @@
 import config from "../config";
 
-const { loginOk, loginWrong, passwordOk, passwordWrong, url, userpage } =
-  config;
+const { loginOk, passwordOk, url } = config;
 
 describe("My Admin UserPage Test Suite", function () {
   beforeEach(() => {
