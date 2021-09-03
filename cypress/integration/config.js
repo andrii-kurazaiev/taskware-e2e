@@ -1,4 +1,4 @@
-const basicUrl = (prefix) => `https://${prefix}.dev.taskware.io`;
+const basicUrl = (prefix) => `http://${prefix}.devtest.taskware.io:8080`;
 
 export default {
   admin: {
